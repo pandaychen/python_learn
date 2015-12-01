@@ -118,6 +118,7 @@ def SelectServerLoop(t_listenfd,t_client_iplist,t_all_msg_queue,t_timeout_dict):
                 else:
                     #other socket,readable
                     recv_data = sock.recv(MAX_TCP_BUFFER)
+                    #here not use recv_data is not None!
                     if recv_data:
                         #print "recv_data:",recv_data,"client:",sock.getpeername()
                         #put recv data in queue
