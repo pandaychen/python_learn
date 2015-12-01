@@ -12,6 +12,7 @@ import signal
 import sys
 import time
 import platform
+import os
 
 #packet receive counter
 g_pktcount=0
@@ -101,11 +102,12 @@ def EpollUdpServerWorker(t_listenfd):
                #if we care(listenfd)
                if select.EPOLLIN & events:
                     client_msg,client_address = t_listenfd.recvfrom(MAX_UDP_BUFFER)
+                    print client_address,"\n"
                     g_pktcount = g_pktcount+1
 
 if __name__ == "__main__":
     signal.signal(signal.SIGINT, UserExit)
 
     listenerfd = SimpleUdpServerBinder("127.0.0.1","8888")
-    SimpleUdpServerWorker(listenerfd)
-    #EpollUdpServerWorker(listenerfd)
+    #SimpleUdpServerWorker(listenerfd)
+    EpollUdpServerWorker(listenerfd)
