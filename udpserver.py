@@ -69,6 +69,7 @@ def SimpleUdpServerWorker(t_listenfd):
     global g_pktcount
     if t_listenfd is None:
         LoggingFun("udpserver_error","listenfd error")
+        sys.exit(1)
     else:
         while True:
             #if no packet recv,then hold here
